@@ -1,0 +1,66 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "language": [
+        "Java",
+        "Kotlin",
+        "Js"
+      ],
+      "description": "ddasdsadadadsadadasd",
+      "dateFrom": "",
+      "dateTo": "",
+      "author": "typicode",
+      "url": "http://localhost:3000/board/project/new"
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "description": "ddasdsadadadsadadasd"
+    },
+    {
+      "title": "test123",
+      "language": [
+        "REACT"
+      ],
+      "description": "test321",
+      "range-date-picker": [
+        "2022-03-14T14:04:15.526Z",
+        "2022-03-17T14:04:15.526Z"
+      ],
+      "author": "a",
+      "url": "http://localhost:3000/board/project/new",
+      "id": 3
+    },
+    {
+      "title": "test",
+      "language": [
+        "JS",
+        "REACT"
+      ],
+      "description": "test",
+      "range-date-picker": [
+        "2022-03-14T14:23:08.318Z",
+        "2022-03-26T14:23:08.318Z"
+      ],
+      "author": "dasdsa",
+      "url": "http://localhost:3000/board/project/new",
+      "id": 4
+    }
+  ],
+  "languages": [
+    {
+      "id": 1,
+      "title": "JS"
+    },
+    {
+      "id": 2,
+      "title": "REACT"
+    },
+    {
+      "id": 3,
+      "title": "KOTLIN"
+    }
+  ]
+}
