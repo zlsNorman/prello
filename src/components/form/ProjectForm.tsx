@@ -15,9 +15,10 @@ import moment from "moment";
 import { FieldData } from "rc-field-form/lib/interface";
 import { RangeValue } from "rc-picker/lib/interface";
 import React, { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router";
 import { projectApi, useProjectApi } from "../../hooks/projectApi";
 import useIsMobile from "../../hooks/useIsMobile";
-import { Language, Project } from "../../types/project";
+import { Language, Project, Status, StatusType } from "../../types/project";
 import LoadingSpinner from "../extra/LoadingSpinner";
 const { RangePicker } = DatePicker;
 const { Option } = Select;
@@ -30,14 +31,19 @@ interface Props {
   dateTo?: Date;
   author: string;
   url: string;
+  status: StatusType;
+  isEdit?: boolean;
+  id?: number;
 }
 
 export default function ProjectForm(props: Props) {
+  const navigate = useNavigate();
   const size = "large";
   const isMobile = useIsMobile();
 
   const [form] = Form.useForm();
   const [languages] = useProjectApi<Language[]>("/languages");
+  const [statuses] = useProjectApi<Status[]>("/status");
 
   const [title, setTitle] = useState(props.title);
   const [language, setLanguage] = useState<Language[]>(props.language);
@@ -46,8 +52,9 @@ export default function ProjectForm(props: Props) {
   const [dateTo, setDateTo] = useState<Date>();
   const [author, setAuthor] = useState(props.author);
   const [url, setUrl] = useState(props.url);
+  const [status, setStatus] = useState(props.status);
 
-  if (!form || !languages) {
+  if (!form || !languages || !statuses) {
     return <LoadingSpinner />;
   }
 
@@ -74,7 +81,12 @@ export default function ProjectForm(props: Props) {
   };
 
   const onsave = (inputvalues: Project) => {
-    projectApi("POST", "/projects/", () => true, inputvalues);
+    projectApi(
+      props.isEdit ? "PUT" : "POST",
+      props.isEdit ? `/projects/${props.id}` : "/projects/",
+      () => navigate("/board"),
+      inputvalues
+    );
   };
 
   return (
@@ -113,6 +125,10 @@ export default function ProjectForm(props: Props) {
               {
                 name: "url",
                 value: url,
+              },
+              {
+                name: "status",
+                value: status,
               },
             ]}
           >
@@ -154,7 +170,18 @@ export default function ProjectForm(props: Props) {
                 size={size}
               ></Input.TextArea>
             </Form.Item>
-            <Row style={{ columnGap: "5%" }} wrap={false}>
+            <Row style={{ columnGap: "5%" }}>
+              <Col style={{ flexGrow: "1" }}>
+                <Form.Item name="status" label="Status">
+                  <Select size={size} onChange={(value) => setStatus(value)}>
+                    {statuses.map(({ status }) => (
+                      <Option key={status} value={status}>
+                        {status}
+                      </Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </Col>
               <Col style={{ flexGrow: "1" }}>
                 <Form.Item
                   name="range-date-picker"
@@ -168,11 +195,6 @@ export default function ProjectForm(props: Props) {
                       dateStringtoDate(moment, string, 0)
                     }
                   ></RangePicker>
-                </Form.Item>
-              </Col>
-              <Col>
-                <Form.Item name="dateInDays" label=" ">
-                  <Input placeholder="in Days" size={size} disabled></Input>
                 </Form.Item>
               </Col>
             </Row>
@@ -192,9 +214,18 @@ export default function ProjectForm(props: Props) {
                 size={size}
               ></Input>
             </Form.Item>
-            <Form.Item shouldUpdate>
-              {() => (
-                <div style={{ display: "flex", justifyContent: "right" }}>
+            <div
+              style={{ display: "flex", justifyContent: "right", gap: "1rem" }}
+            >
+              <Button
+                type="primary"
+                size={size}
+                onClick={() => navigate("/board")}
+              >
+                back
+              </Button>
+              <Form.Item shouldUpdate>
+                {() => (
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -203,9 +234,9 @@ export default function ProjectForm(props: Props) {
                   >
                     Save
                   </Button>
-                </div>
-              )}
-            </Form.Item>
+                )}
+              </Form.Item>
+            </div>
           </Form>
         </Col>
         <Col flex="30%">30%</Col>

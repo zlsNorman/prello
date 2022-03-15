@@ -1,18 +1,17 @@
 {
   "projects": [
     {
-      "id": 1,
       "title": "json-server",
       "language": [
         "Java",
         "Kotlin",
         "Js"
       ],
-      "description": "ddasdsadadadsadadasd",
-      "dateFrom": "",
-      "dateTo": "",
+      "description": "das ist ein text 123",
+      "status": "onhold",
       "author": "typicode",
-      "url": "http://localhost:3000/board/project/new"
+      "url": "http://localhost:3000/board/project/new",
+      "id": 1
     },
     {
       "id": 2,
@@ -20,33 +19,76 @@
       "description": "ddasdsadadadsadadasd"
     },
     {
-      "title": "test123",
+      "title": "test",
       "language": [
-        "REACT"
+        "JS"
       ],
-      "description": "test321",
-      "range-date-picker": [
-        "2022-03-14T14:04:15.526Z",
-        "2022-03-17T14:04:15.526Z"
-      ],
-      "author": "a",
-      "url": "http://localhost:3000/board/project/new",
+      "description": "test",
+      "status": "ongoing",
+      "author": "",
+      "url": "",
       "id": 3
+    },
+    {
+      "title": "json-server",
+      "language": [
+        "Java",
+        "Kotlin",
+        "Js"
+      ],
+      "description": "ddasdsadadadsadadasd",
+      "status": "onhold",
+      "author": "typicode",
+      "url": "https://image.geo.de/30147338/t/iL/v4/w1440/r0/-/nilpferd-wildlife-photographer-of-the-year-jpg--83937-.jpg",
+      "id": 4
+    },
+    {
+      "title": "json-server",
+      "language": [
+        "Java",
+        "Kotlin",
+        "Js"
+      ],
+      "description": "ddasdsadadadsadadasd",
+      "status": "finished",
+      "author": "typicode",
+      "url": "https://image.geo.de/30147338/t/iL/v4/w1440/r0/-/nilpferd-wildlife-photographer-of-the-year-jpg--83937-.jpg",
+      "id": 5
+    },
+    {
+      "title": "json-server",
+      "language": [
+        "Java",
+        "Kotlin",
+        "Js"
+      ],
+      "description": "lol das ist ein text",
+      "status": "ongoing",
+      "author": "typicode",
+      "url": "http://localhost:3000/board/project/new",
+      "id": 6
     },
     {
       "title": "test",
       "language": [
-        "JS",
         "REACT"
       ],
       "description": "test",
-      "range-date-picker": [
-        "2022-03-14T14:23:08.318Z",
-        "2022-03-26T14:23:08.318Z"
+      "status": "finished",
+      "author": "lel",
+      "url": "",
+      "id": 7
+    },
+    {
+      "title": "finished",
+      "language": [
+        "KOTLIN"
       ],
-      "author": "dasdsa",
-      "url": "http://localhost:3000/board/project/new",
-      "id": 4
+      "description": "adasdsa",
+      "status": "ongoing",
+      "author": "dasd",
+      "url": "",
+      "id": 8
     }
   ],
   "languages": [
@@ -61,6 +103,23 @@
     {
       "id": 3,
       "title": "KOTLIN"
+    }
+  ],
+  "status": [
+    {
+      "id": 1,
+      "status": "onhold",
+      "backgroundColor": "grey"
+    },
+    {
+      "id": 2,
+      "status": "ongoing",
+      "backgroundColor": "green"
+    },
+    {
+      "id": 3,
+      "status": "finished",
+      "backgroundColor": "red"
     }
   ]
 }

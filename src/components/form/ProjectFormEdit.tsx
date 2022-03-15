@@ -7,22 +7,25 @@ import ProjectForm from "./ProjectForm";
 
 export default function ProjectFormEdit() {
   const { projectId } = useParams<{ projectId: string }>();
-  const project = useProjectApi<Project>(`/projects/${projectId}`)[0];
+  const [project] = useProjectApi<Project>(`/projects/${projectId}`);
   console.log(project);
 
   if (!project) {
-    <LoadingSpinner />;
+    return <LoadingSpinner />;
   }
 
   return (
     <ProjectForm
-      title={"project.title"}
-      language={[]}
-      description={""}
-      dateTo={new Date()}
-      dateFrom={new Date()}
-      author={""}
-      url={""}
+      title={project.title}
+      language={project.language || []}
+      description={project.description}
+      dateTo={project.dateTo}
+      dateFrom={project.dateFrom}
+      author={project.author || ""}
+      url={project.url || ""}
+      status={project.status}
+      id={project.id}
+      isEdit={true}
     />
   );
 }

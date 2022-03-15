@@ -11,7 +11,10 @@ export default function Routes() {
       <Route path="/" element={<Navigate to={"/board"} />} />
       <Route path="/board" element={<Board />} />
       <Route path="/board/project/:projectId" element={<ProjectFormEdit />} />
-      <Route path="/board/project/:projectId/edit" />
+      <Route
+        path="/board/project/:projectId/edit"
+        element={<ProjectFormEdit />}
+      />
       <Route path="/board/project/new" element={<ProjectFormAdd />} />
       <Route path="/settings" />
       <Route path="/statistic" />

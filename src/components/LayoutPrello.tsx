@@ -21,7 +21,7 @@ export default function LayoutPrello() {
   );
 
   useEffect(() => {
-    setKey([items.find((item) => location.pathname == item.path)?.key || "1"]);
+    setKey([items.find((item) => location.pathname == item.path)?.key || "0"]);
   }, [items, location]);
 
   return (

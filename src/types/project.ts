@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export interface Project {
   id?: number;
   title: string;
@@ -7,6 +9,7 @@ export interface Project {
   dateTo?: Date;
   author?: string;
   url?: string;
+  status: StatusType;
 }
 
 export interface Language {
@@ -14,6 +17,14 @@ export interface Language {
   title: string;
 }
 
+export interface Status {
+  id?: number;
+  status: StatusType;
+  backgroundColor?: string;
+}
+
 export interface Board {
   board: [];
 }
+
+export type StatusType = "onhold" | "ongoing" | "finished" | "";
