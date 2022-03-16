@@ -1,108 +1,70 @@
 {
   "projects": [
     {
-      "title": "json-server",
+      "title": "a",
       "language": [
-        "Java",
-        "Kotlin",
-        "Js"
+        {
+          "id": 1,
+          "title": "JS",
+          "backgroundColor": "magenta"
+        },
+        {
+          "id": 2,
+          "title": "REACT",
+          "backgroundColor": "blue"
+        }
       ],
-      "description": "das ist ein text 123",
+      "description": "ab",
       "status": "onhold",
-      "author": "typicode",
-      "url": "http://localhost:3000/board/project/new",
+      "range-date-picker": [
+        "2022-03-19T00:00:00.000Z",
+        "2022-03-03T00:00:00.000Z"
+      ],
+      "author": "",
+      "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStpyaXHaxeEfSS3VHaV0gL7Kq1QdBWV1oi1g&usqp=CAU",
       "id": 1
     },
     {
-      "id": 2,
-      "title": "json-server",
-      "description": "ddasdsadadadsadadasd"
-    },
-    {
-      "title": "test",
+      "title": "b",
       "language": [
-        "JS"
+        {
+          "id": 2,
+          "title": "REACT",
+          "backgroundColor": "blue"
+        },
+        {
+          "id": 3,
+          "title": "KOTLIN",
+          "backgroundColor": "volcano"
+        },
+        {
+          "id": 1,
+          "title": "JS",
+          "backgroundColor": "magenta"
+        }
       ],
-      "description": "test",
-      "status": "ongoing",
+      "description": "b",
+      "status": "problem",
       "author": "",
       "url": "",
-      "id": 3
-    },
-    {
-      "title": "json-server",
-      "language": [
-        "Java",
-        "Kotlin",
-        "Js"
-      ],
-      "description": "ddasdsadadadsadadasd",
-      "status": "onhold",
-      "author": "typicode",
-      "url": "https://image.geo.de/30147338/t/iL/v4/w1440/r0/-/nilpferd-wildlife-photographer-of-the-year-jpg--83937-.jpg",
-      "id": 4
-    },
-    {
-      "title": "json-server",
-      "language": [
-        "Java",
-        "Kotlin",
-        "Js"
-      ],
-      "description": "ddasdsadadadsadadasd",
-      "status": "finished",
-      "author": "typicode",
-      "url": "https://image.geo.de/30147338/t/iL/v4/w1440/r0/-/nilpferd-wildlife-photographer-of-the-year-jpg--83937-.jpg",
-      "id": 5
-    },
-    {
-      "title": "json-server",
-      "language": [
-        "Java",
-        "Kotlin",
-        "Js"
-      ],
-      "description": "lol das ist ein text",
-      "status": "ongoing",
-      "author": "typicode",
-      "url": "http://localhost:3000/board/project/new",
-      "id": 6
-    },
-    {
-      "title": "test",
-      "language": [
-        "REACT"
-      ],
-      "description": "test",
-      "status": "finished",
-      "author": "lel",
-      "url": "",
-      "id": 7
-    },
-    {
-      "title": "finished",
-      "language": [
-        "KOTLIN"
-      ],
-      "description": "adasdsa",
-      "status": "ongoing",
-      "author": "dasd",
-      "url": "",
-      "id": 8
+      "id": 2
     }
   ],
   "languages": [
     {
       "id": 1,
-      "title": "JS"
+      "title": "JS",
+      "backgroundColor": "magenta"
     },
     {
       "id": 2,
-      "title": "REACT"
+      "title": "REACT",
+      "backgroundColor": "blue"
     },
     {
       "id": 3,
-      "title": "KOTLIN"
+      "title": "KOTLIN",
+      "backgroundColor": "volcano"
     }
   ],
   "status": [
@@ -114,11 +76,16 @@
     {
       "id": 2,
       "status": "ongoing",
-      "backgroundColor": "green"
+      "backgroundColor": "yellow"
     },
     {
       "id": 3,
       "status": "finished",
+      "backgroundColor": "green"
+    },
+    {
+      "id": 4,
+      "status": "problem",
       "backgroundColor": "red"
     }
   ]

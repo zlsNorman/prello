@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { Space, Card } from "antd";
+import { Space, Card, Divider } from "antd";
 import Meta from "antd/lib/card/Meta";
 import React, { useState } from "react";
 import { Project, StatusType } from "../types/project";
@@ -22,8 +22,6 @@ export default function BoardColumns({
   setProjects,
   statusColor,
 }: Props) {
-  console.log(projects);
-
   const [{ isOver }, dropRef] = useDrop({
     accept: "card",
     drop: (item: any) =>
@@ -39,13 +37,7 @@ export default function BoardColumns({
                   ),
                   { ...item.project, status: status },
                 ].sort((a: Project, b: Project) =>
-                  a.id
-                    ? a.id - a.id
-                    : a.title > b.title
-                    ? 1
-                    : b.title > a.title
-                    ? -1
-                    : 0
+                  a.title > b.title ? 1 : b.title > a.title ? -1 : 0
                 )
               );
             },
@@ -67,16 +59,11 @@ export default function BoardColumns({
       id={status}
       ref={dropRef}
     >
-      <Space direction="vertical">
+      <Divider>{status.toUpperCase()}</Divider>
+      <Space direction="vertical" style={{ width: "100%" }}>
         {projects
           .sort((a: Project, b: Project) =>
-            a.id
-              ? a.id - a.id
-              : a.title > b.title
-              ? 1
-              : b.title > a.title
-              ? -1
-              : 0
+            a.title > b.title ? 1 : b.title > a.title ? -1 : 0
           )
           .filter((project) => project.status == status)
           .map((project) => {

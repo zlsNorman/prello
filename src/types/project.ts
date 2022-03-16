@@ -5,6 +5,16 @@ export interface Project {
   title: string;
   language?: Language[];
   description: string;
+  "range-date-picker"?: Date[];
+  author?: string;
+  url?: string;
+  status: StatusType;
+}
+export interface formProject {
+  id?: number;
+  title: string;
+  language?: string[];
+  description: string;
   dateFrom?: Date;
   dateTo?: Date;
   author?: string;
@@ -15,6 +25,7 @@ export interface Project {
 export interface Language {
   id?: number;
   title: string;
+  backgroundColor?: string;
 }
 
 export interface Status {

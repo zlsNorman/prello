@@ -1,13 +1,19 @@
 .board {
   margin: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 1rem;
 }
 .board > div {
   border: 1px solid black;
+  padding-bottom: 5rem;
 }
 
 .dragging {
   border: 1px solid red;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
 }
