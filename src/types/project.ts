@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { type } from "os";
 
 export interface Project {
@@ -15,8 +16,7 @@ export interface formProject {
   title: string;
   language?: string[];
   description: string;
-  dateFrom?: Date;
-  dateTo?: Date;
+  "range-date-picker"?: Date[];
   author?: string;
   url?: string;
   status: StatusType;
@@ -39,3 +39,20 @@ export interface Board {
 }
 
 export type StatusType = "onhold" | "ongoing" | "finished" | "";
+
+export const createProjectObject = (
+  inputvalues: formProject,
+  supportedLanguages: Language[]
+): Project => {
+  const { language, ...rest } = inputvalues;
+  return language
+    ? {
+        ...rest,
+        language: language
+          .map((lang) =>
+            supportedLanguages.find((supLang) => supLang.title === lang)
+          )
+          .filter((el) => el) as Language[],
+      }
+    : rest;
+};
