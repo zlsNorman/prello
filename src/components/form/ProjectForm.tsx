@@ -70,10 +70,39 @@ export default function ProjectForm(props: Props) {
     return <LoadingSpinner />;
   }
 
+  const formFields = [
+    {
+      name: "title",
+      value: title,
+    },
+    {
+      name: "language",
+      value: language,
+    },
+    {
+      name: "description",
+      value: description,
+    },
+    {
+      name: "range-date-picker",
+      value: [dateFrom ? moment(dateFrom) : "", dateTo ? moment(dateTo) : ""],
+    },
+    {
+      name: "author",
+      value: author,
+    },
+    {
+      name: "url",
+      value: url,
+    },
+    {
+      name: "status",
+      value: status,
+    },
+  ];
+
   const disableButto = () => {
     return (
-      /* !form.isFieldTouched("description") ||
-      !form.isFieldTouched("title") || */
       title == "" ||
       description == "" ||
       !!form.getFieldsError().filter(({ errors }) => errors.length).length
@@ -84,11 +113,6 @@ export default function ProjectForm(props: Props) {
     moment: RangeValue<moment.Moment>,
     datestring: string[]
   ) => {
-    /* if (index == 0) {
-      setDateFrom(new Date(datestring[0]));
-    } else {
-      setDateTo(new Date(datestring[1]));
-    } */
     setDateFrom(new Date(datestring[0]));
     setDateTo(new Date(datestring[1]));
   };
@@ -101,8 +125,8 @@ export default function ProjectForm(props: Props) {
       {
         ...inputvalues,
         //string to language object
-        language: inputvalues.language?.map((leng) =>
-          supportedLanguages.find((supLen) => supLen.title === leng)
+        language: inputvalues.language?.map((lang) =>
+          supportedLanguages.find((supLang) => supLang.title === lang)
         ),
       }
     );
@@ -116,7 +140,7 @@ export default function ProjectForm(props: Props) {
     <div style={{ margin: "2rem" }}>
       <Divider>{pageTitle}</Divider>
       <Row wrap={isMobile}>
-        <Col flex="30%">30%</Col>
+        <Col flex="30%"></Col>
         <Col flex="auto">
           <Form
             form={form}
@@ -124,40 +148,7 @@ export default function ProjectForm(props: Props) {
             autoComplete="off"
             layout="vertical"
             onFinish={(e) => onsave(e)}
-            fields={[
-              {
-                name: "title",
-                value: title,
-              },
-              {
-                name: "language",
-                value: language,
-              },
-              {
-                name: "description",
-                value: description,
-              },
-              {
-                name: "range-date-picker",
-                /* value: [moment("2020-03-09 13:00"), moment("2020-03-27 13:17")], */
-                value: [
-                  dateFrom ? moment(dateFrom) : "",
-                  dateTo ? moment(dateTo) : "",
-                ],
-              },
-              {
-                name: "author",
-                value: author,
-              },
-              {
-                name: "url",
-                value: url,
-              },
-              {
-                name: "status",
-                value: status,
-              },
-            ]}
+            fields={formFields}
           >
             <Form.Item
               name="title"
@@ -183,7 +174,7 @@ export default function ProjectForm(props: Props) {
                 tokenSeparators={[","]}
                 onChange={(value) => setLanguage(value)}
               >
-                {supportedLanguages.map(({ id, title }) => (
+                {supportedLanguages.map(({ title }) => (
                   <Option key={title} value={title}>
                     {title}
                   </Option>
@@ -242,7 +233,7 @@ export default function ProjectForm(props: Props) {
                       dateStringtoDate(moment, string)
                     }
                     allowClear={false}
-                  ></RangePicker>
+                  />
                 </Form.Item>
               </Col>
             </Row>
@@ -251,7 +242,7 @@ export default function ProjectForm(props: Props) {
                 readOnly={isDetails}
                 onChange={(e) => setAuthor(e.target.value)}
                 size={size}
-              ></Input>
+              />
             </Form.Item>
             <Image width={200} src={url} />
             <Form.Item
@@ -263,7 +254,7 @@ export default function ProjectForm(props: Props) {
                 readOnly={isDetails}
                 onChange={(e) => setUrl(e.target.value)}
                 size={size}
-              ></Input>
+              />
             </Form.Item>
             <div
               style={{
@@ -313,7 +304,7 @@ export default function ProjectForm(props: Props) {
             </div>
           </Form>
         </Col>
-        <Col flex="30%">30%</Col>
+        <Col flex="30%"></Col>
       </Row>
     </div>
   );

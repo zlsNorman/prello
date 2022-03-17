@@ -23,31 +23,6 @@
       "author": "",
       "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStpyaXHaxeEfSS3VHaV0gL7Kq1QdBWV1oi1g&usqp=CAU",
       "id": 1
-    },
-    {
-      "title": "b",
-      "language": [
-        {
-          "id": 2,
-          "title": "REACT",
-          "backgroundColor": "blue"
-        },
-        {
-          "id": 3,
-          "title": "KOTLIN",
-          "backgroundColor": "volcano"
-        },
-        {
-          "id": 1,
-          "title": "JS",
-          "backgroundColor": "magenta"
-        }
-      ],
-      "description": "b",
-      "status": "problem",
-      "author": "",
-      "url": "",
-      "id": 2
     }
   ],
   "languages": [

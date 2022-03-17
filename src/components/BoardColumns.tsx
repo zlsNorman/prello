@@ -1,10 +1,9 @@
 /* eslint-disable indent */
-import { Space, Card, Divider } from "antd";
-import Meta from "antd/lib/card/Meta";
-import React, { useState } from "react";
+import { Space, Divider } from "antd";
+import React from "react";
 import { Project, StatusType } from "../types/project";
 
-import { useDrag, useDrop } from "react-dnd";
+import { useDrop } from "react-dnd";
 import Cards from "./Cards";
 import { projectApi } from "../hooks/projectApi";
 
@@ -25,8 +24,9 @@ export default function BoardColumns({
   const [{ isOver }, dropRef] = useDrop({
     accept: "card",
     drop: (item: any) =>
-      item.project.status != status
-        ? projectApi(
+      item.project.status !== status
+        ? console.log(item)
+        : /* projectApi(
             "PATCH",
             `/projects/${item.project.id}`,
             () => {
@@ -42,8 +42,8 @@ export default function BoardColumns({
               );
             },
             { status: status }
-          )
-        : {},
+          ) */
+          {},
     collect: (monitor) => ({
       isOver: monitor.isOver(),
     }),

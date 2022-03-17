@@ -1,4 +1,4 @@
-import { Modal, Button } from "antd";
+import { Modal } from "antd";
 import React, { useState } from "react";
 import { projectApi } from "../../hooks/projectApi";
 import { Project } from "../../types/project";
