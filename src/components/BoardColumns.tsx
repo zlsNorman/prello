@@ -6,27 +6,21 @@ import { Project, StatusType } from "../types/project";
 import { useDrop } from "react-dnd";
 import Cards from "./Cards";
 import { projectApi } from "../hooks/projectApi";
+import { useBoardContext } from "./ProjectProvider";
 
 interface Props {
-  projects: Project[];
-  setProjects: React.Dispatch<React.SetStateAction<Project[] | undefined>>;
   status: StatusType;
   statusColor?: string;
 }
 
-/* setProjects([...projects, { ...item.project, status: status }]) */
-export default function BoardColumns({
-  projects,
-  status,
-  setProjects,
-  statusColor,
-}: Props) {
+export default function BoardColumns({ status, statusColor }: Props) {
+  const { projects, setProjects } = useBoardContext();
+
   const [{ isOver }, dropRef] = useDrop({
     accept: "card",
     drop: (item: any) =>
       item.project.status !== status
-        ? console.log(item)
-        : /* projectApi(
+        ? projectApi(
             "PATCH",
             `/projects/${item.project.id}`,
             () => {
@@ -42,8 +36,8 @@ export default function BoardColumns({
               );
             },
             { status: status }
-          ) */
-          {},
+          )
+        : {},
     collect: (monitor) => ({
       isOver: monitor.isOver(),
     }),

@@ -5,8 +5,6 @@ import Routes from "./Routes";
 import "../index.css";
 import { ProjectOutlined } from "@ant-design/icons";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import LoadingSpinner from "./extra/LoadingSpinner";
-import Item from "antd/lib/list/Item";
 
 export default function LayoutPrello() {
   const [selectedKey, setKey] = useState<string[]>();
@@ -16,6 +14,7 @@ export default function LayoutPrello() {
     () => [
       { key: "1", label: "Board", path: "/board" },
       { key: "2", label: "createProject", path: "/board/project/new" },
+      { key: "3", label: "Settings", path: "/settings" },
     ],
     []
   );
@@ -33,8 +32,6 @@ export default function LayoutPrello() {
               <NavLink to={item.path}>{item.label}</NavLink>
             </Menu.Item>
           ))}
-          <Menu.Item key="3">Settings</Menu.Item>
-          <Menu.Item key="4">Statistic</Menu.Item>
         </Menu>
       </Header>
       <Layout>

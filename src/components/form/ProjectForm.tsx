@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import {
   Col,
   Divider,
@@ -12,6 +13,7 @@ import {
   message,
   Image,
 } from "antd";
+import { AxiosResponse } from "axios";
 import moment from "moment";
 import { FieldData } from "rc-field-form/lib/interface";
 import { RangeValue } from "rc-picker/lib/interface";
@@ -20,6 +22,7 @@ import { Navigate, useNavigate } from "react-router";
 import { projectApi, useProjectApi } from "../../hooks/projectApi";
 import useIsMobile from "../../hooks/useIsMobile";
 import {
+  createProjectObject,
   formProject,
   Language,
   Project,
@@ -27,6 +30,7 @@ import {
   StatusType,
 } from "../../types/project";
 import LoadingSpinner from "../extra/LoadingSpinner";
+import { useBoardContext } from "../ProjectProvider";
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 
@@ -51,6 +55,7 @@ export default function ProjectForm(props: Props) {
   const isMobile = useIsMobile();
 
   const [form] = Form.useForm();
+  const { projects, setProjects } = useBoardContext();
   const [supportedLanguages] = useProjectApi<Language[]>("/languages");
   const [statuses] = useProjectApi<Status[]>("/status");
 
@@ -117,18 +122,25 @@ export default function ProjectForm(props: Props) {
     setDateTo(new Date(datestring[1]));
   };
 
+  const onsaveCallback = (data: any, project: Project) => {
+    const projectsArray: Project[] = props.isEdit
+      ? [
+          ...projects.filter((el) => el.id !== data.id),
+          { ...project, id: data.id },
+        ]
+      : [...projects, { ...project, id: data.id }];
+
+    setProjects(projectsArray);
+    navigate("/board");
+  };
+
   const onsave = (inputvalues: formProject) => {
+    const project = createProjectObject(inputvalues, supportedLanguages);
     projectApi(
       props.isEdit ? "PUT" : "POST",
       props.isEdit ? `/projects/${props.id}` : "/projects/",
-      () => navigate("/board"),
-      {
-        ...inputvalues,
-        //string to language object
-        language: inputvalues.language?.map((lang) =>
-          supportedLanguages.find((supLang) => supLang.title === lang)
-        ),
-      }
+      (data) => onsaveCallback(data, project),
+      project
     );
   };
   const editPage = (): void => {
@@ -192,7 +204,7 @@ export default function ProjectForm(props: Props) {
                 readOnly={isDetails}
                 onChange={(e) => setDescription(e.target.value)}
                 size={size}
-              ></Input.TextArea>
+              />
             </Form.Item>
             <Row style={{ columnGap: "5%" }}>
               <Col style={{ flexGrow: "1" }}>

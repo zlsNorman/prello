@@ -7,24 +7,23 @@ import css from "../style/board.module.css";
 import BoardColumns from "./BoardColumns";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { useBoardContext } from "./ProjectProvider";
 
 export default function Board() {
-  const [projects, setProjects] = useProjectApi<Project[]>("/projects/");
-  const [types] = useProjectApi<Status[]>("/status");
-  //const types: StatusType[] = ["onhold", "ongoing", "finished"];
+  const { projects } = useBoardContext();
 
-  if (!projects || !types) {
+  const [status] = useProjectApi<Status[]>("/status");
+
+  if (!projects || !status) {
     return <LoadingSpinner />;
   }
   return (
     <div className={css.board}>
       <DndProvider backend={HTML5Backend}>
-        {types.map(({ status, backgroundColor }) => (
+        {status.map(({ status, backgroundColor }) => (
           <BoardColumns
             key={status}
-            projects={projects}
             status={status}
-            setProjects={setProjects}
             statusColor={backgroundColor}
           />
         ))}

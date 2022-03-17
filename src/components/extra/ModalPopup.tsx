@@ -1,7 +1,8 @@
 import { Modal } from "antd";
 import React, { useState } from "react";
 import { projectApi } from "../../hooks/projectApi";
-import { Project } from "../../types/project";
+import { Language, Project, Status } from "../../types/project";
+import { useBoardContext } from "../ProjectProvider";
 
 interface Props {
   title: string;
@@ -9,16 +10,14 @@ interface Props {
   waitingText: string;
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  project: Project;
+  project?: Project;
+  status?: Status;
+  language?: Language;
+  action: () => void;
 }
 export const ModalPopup = (props: Props) => {
   const [confirmLoading, setConfirmLoading] = useState<boolean>(false);
   const [modalText, setModalText] = useState<string>(props.text);
-  const delteProject = () => {
-    projectApi("DELETE", `/projects/${props.project.id}`, () =>
-      console.log("deleted")
-    );
-  };
 
   const handleOk = () => {
     setModalText(props.waitingText);
@@ -26,7 +25,7 @@ export const ModalPopup = (props: Props) => {
     setTimeout(() => {
       props.setVisible(false);
       setConfirmLoading(false);
-      delteProject();
+      props.action();
     }, 2000);
   };
 
@@ -38,7 +37,15 @@ export const ModalPopup = (props: Props) => {
     <>
       <Modal
         centered
-        title={`${props.title} [${props.project.title}]`}
+        title={`${props.title} [${
+          props.project
+            ? props.project.title
+            : props.status
+            ? props.status.status
+            : props.language
+            ? props.language.title
+            : ""
+        }]`}
         visible={props.visible}
         onOk={handleOk}
         confirmLoading={confirmLoading}

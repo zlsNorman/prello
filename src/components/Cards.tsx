@@ -3,16 +3,12 @@ import Meta from "antd/lib/card/Meta";
 import React, { useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { Project } from "../types/project";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-  ProfileOutlined,
-  RestOutlined,
-} from "@ant-design/icons";
+import { EditOutlined, ProfileOutlined, RestOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router";
 import css from "../style/board.module.css";
 import { ModalPopup } from "./extra/ModalPopup";
+import { projectApi } from "../hooks/projectApi";
+import { useBoardContext } from "./ProjectProvider";
 
 interface Props {
   project: Project;
@@ -33,10 +29,17 @@ export default function Cards({ project }: Props) {
   const showModal = () => {
     setVisible(true);
   };
+  const { projects, setProjects } = useBoardContext();
+  const delteProject = () => {
+    projectApi("DELETE", `/projects/${project.id}`, () =>
+      setProjects(projects.filter((el) => el.id !== project.id))
+    );
+  };
 
   return (
     <>
       <ModalPopup
+        action={delteProject}
         title={"Delte Project"}
         text={"do you wanna Delete this Project"}
         waitingText={"only seconds until the delete is done..."}
@@ -65,6 +68,9 @@ export default function Cards({ project }: Props) {
               {project.language &&
                 project.language
                   .slice(0, tagSize)
+                  .sort((a, b) =>
+                    a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+                  )
                   .map((language, index, slicedArray) => {
                     return (
                       <div key={language.id}>
