@@ -14,7 +14,6 @@ export default function StatusForm() {
   };
   return (
     <div>
-      TEST
       <Form
         name="statusForm"
         onFinish={(inputedValues) => onSave(inputedValues)}

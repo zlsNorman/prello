@@ -40,26 +40,22 @@
       ],
       "description": "b",
       "status": "onhold",
-      "range-date-picker": ["", ""],
+      "range-date-picker": [
+        "",
+        ""
+      ],
       "author": "b",
       "url": "",
       "id": 2
     },
     {
-      "title": "d",
-      "language": [],
-      "description": "d",
-      "status": "onhold",
-      "range-date-picker": ["", ""],
-      "author": "",
-      "url": "",
-      "id": 4
-    },
-    {
       "title": "gaaga",
       "description": "g",
-      "status": "ongoing",
-      "range-date-picker": ["", ""],
+      "status": "finished",
+      "range-date-picker": [
+        "",
+        ""
+      ],
       "author": "",
       "url": "",
       "language": [],
@@ -70,7 +66,10 @@
       "language": [],
       "description": "g",
       "status": "finished",
-      "range-date-picker": ["", ""],
+      "range-date-picker": [
+        "",
+        ""
+      ],
       "author": "",
       "url": "",
       "id": 6
@@ -79,8 +78,11 @@
       "title": "lel",
       "language": [],
       "description": "lel",
-      "status": "finished",
-      "range-date-picker": ["", ""],
+      "status": "ongoing",
+      "range-date-picker": [
+        "",
+        ""
+      ],
       "author": "",
       "url": "",
       "id": 8
