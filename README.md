@@ -1,4 +1,7 @@
-Start Json server
+install modules
+yarn install
+
+start Json server
 json-server --watch db.json --port 3001
 
 start react
