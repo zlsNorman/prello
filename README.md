@@ -20,7 +20,11 @@
 
 
 ## Technologies Used
-- React, Typescript, AntDesign, JsonDb, ReactDnD
+- React
+- Typescript
+- AntDesign
+- JsonDb
+- ReactDnD
 
 
 ## Features
