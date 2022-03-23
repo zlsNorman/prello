@@ -1,7 +1,7 @@
 
 
 # Prello
-> like Trello but simpler :.D
+> like Trello but simpler 😁 and for Projects
 > 
 ## Table of Contents
 * [General Info](#general-information)
