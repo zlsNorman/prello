@@ -40,8 +40,14 @@
 install modules
 - yarn install
 
-start Json server
+install Global JSON Server if you want
+- npm install -g json-server
+- 
+start JSON server with GLobal Install
 - json-server --watch db.json --port 3001
+
+start JSON server without GLobal Install
+- npx json-server --watch db.json --port 3001
 
 start react
 - yarn start
